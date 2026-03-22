@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="header glass">
+  <div class="logo-container">
+    <img src="assets/logo.png" class="logo">
+    <span class="brand">KanhaWear</span>
+  </div>
+
+  <button class="btn glass-btn" onclick="goBack()">Back</button>
+</header>
+
+<!-- PRODUCT CONTAINER -->
+<section id="productPage" class="product-page"></section>
+<div id="orderModal" class="modal">
+  <div class="modal-content glass">
+
+    <span class="close" onclick="closeModal()">×</span>
+
+    <h2>Order Product</h2>
+
+    <input id="name" placeholder="Your Name">
+    <input id="address" placeholder="Address">
+    <input id="qty" placeholder="Quantity">
+    <input id="size" placeholder="Kanha ji Size">
+
+    <button class="btn main-btn" onclick="sendOrder()">Send Order</button>
+
+  </div>
+</div>
+
+<script src="js/cache.js"></script>
+<script src="js/store.js"></script>
+<script src="js/product.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script>
+if(localStorage.getItem("admin") !== "true"){
+window.location.replace("admin-login.html");
+}
+</script>
+
+</head>
+
+<body>
+
+<header class="header glass">
+  <h2>Admin Dashboard</h2>
+  <button class="btn glass-btn" onclick="logout()">Logout</button>
+</header>
+
+<section class="admin-container glass">
+
+<h3>Add Product</h3>
+
+<input id="title" placeholder="Title">
+<input id="price" placeholder="Price">
+<textarea id="desc" placeholder="Description"></textarea>
+
+<input id="images" placeholder="Image Links (comma separated)">
+
+<select id="category">
+  <option value="c">Clothes</option>
+  <option value="a">Accessories</option>
+</select>
+
+<select id="visible">
+  <option value="yes">Visible</option>
+  <option value="no">Hidden</option>
+</select>
+
+<select id="season">
+  <option value="">None</option>
+  <option value="winter">Winter</option>
+  <option value="summer">Summer</option>
+</select>
+
+<button class="btn main-btn" onclick="addProduct()">Add Product</button>
+
+</section>
+
+<script src="js/admin-dashboard.js"></script>
+
+</body>
+</html>
