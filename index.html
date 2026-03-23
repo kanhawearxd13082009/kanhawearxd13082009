@@ -13,7 +13,12 @@
 </head>
 
 <body>
-
+<div id="refreshScreen">
+  <div class="refresh-box">
+    <h1 id="deviceMsg"></h1>
+    <p>For best experience of KanhaWear ✨</p>
+  </div>
+</div>
 <!-- HEADER -->
 <header class="header glass">
   
@@ -104,6 +109,26 @@ const loader = document.getElementById("loader");
 if(loader) loader.style.display = "none";
 };
 </script>
+<script>
+const msg = document.getElementById("deviceMsg");
 
+// detect device
+const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+
+if(isMobile){
+msg.innerText = "📱 Please refresh once";
+}else{
+msg.innerText = "💻 Please do a hard refresh (Ctrl + Shift + R)";
+}
+
+// auto hide after 3.5 sec
+window.addEventListener("load", () => {
+setTimeout(() => {
+const screen = document.getElementById("refreshScreen");
+screen.style.opacity = "0";
+setTimeout(()=> screen.style.display = "none", 400);
+}, 3500);
+});
+</script>
 </body>
 </html>
