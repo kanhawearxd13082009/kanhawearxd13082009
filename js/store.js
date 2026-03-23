@@ -203,6 +203,10 @@ function openProduct(id){
 location.href = `product.html?id=${id}`;
 }
 
+function customDesign(){
+const msg = encodeURIComponent("Hello, I want a custom design for KanhaWear.");
+window.open(`https://wa.me/916353373418?text=${msg}`, "_blank");
+}
 /* MODAL */
 function openModal(id){
 
