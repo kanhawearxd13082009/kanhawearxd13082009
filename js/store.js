@@ -203,10 +203,6 @@ function openProduct(id){
 location.href = `product.html?id=${id}`;
 }
 
-function customDesign(){
-const msg = encodeURIComponent("Hello, I want a custom design for KanhaWear.");
-window.open(`https://wa.me/916353373418?text=${msg}`, "_blank");
-}
 /* MODAL */
 function openModal(id){
 
@@ -229,47 +225,79 @@ const modal = document.getElementById("orderModal");
 if(modal) modal.style.display = "none";
 }
 
+function customDesign(){
+const msg = encodeURIComponent("Hello, I want a custom design for KanhaWear.");
+window.open(`https://wa.me/916353373418?text=${msg}`, "_blank");
+}
+
 /* ORDER */
 function sendOrder(){
 
 if(!currentProduct){
-alert("No product selected");
+alert("Product not found ❌");
 return;
 }
 
-const name = document.getElementById("name").value;
-const address = document.getElementById("address").value;
-const qty = document.getElementById("qty").value;
-const size = document.getElementById("size").value;
+const name = document.getElementById("name").value.trim();
+const address = document.getElementById("address").value.trim();
+const qty = document.getElementById("qty").value.trim();
+const size = document.getElementById("size").value.trim();
 
+// save for next time
 localStorage.setItem("kanha_name", name);
 localStorage.setItem("kanha_address", address);
 
 const img = currentProduct.images
 ? currentProduct.images.split(",")[0]
-: "No image";
+: "";
 
 const productLink = `${window.location.origin}/product.html?id=${currentProduct.id}`;
-const time = new Date().toLocaleString();
 
-const message = encodeURIComponent(`
-Hello,
+/* ✅ CLEAN MESSAGE (NO WEIRD FORMAT) */
+const message =
+"🛍️ *KanhaWear Order Request*\n\n" +
 
-Product: ${currentProduct.title}
-Price: ₹${currentProduct.price}
+"Hello,\n\n" +
 
-Name: ${name}
-Address: ${address}
+"I would like to place an order with the following details:\n\n" +
 
-Quantity: ${qty}
-Size: ${size}
+"━━━━━━━━━━━━━━━\n" +
+"📦 *Product Details*\n" +
+"━━━━━━━━━━━━━━━\n" +
+"🔖 Item Code: " + currentProduct.id + "\n" +
+"🧥 Product Name: " + currentProduct.title + "\n" +
+"💰 Price: ₹" + currentProduct.price + "\n\n" +
 
-${img}
-${productLink}
-Time: ${time}
-`);
+"━━━━━━━━━━━━━━━\n" +
+"👤 *Customer Details*\n" +
+"━━━━━━━━━━━━━━━\n" +
+"👤 Name: " + name + "\n" +
+"📍 Address: " + address + "\n\n" +
 
-window.open(`https://wa.me/916353373418?text=${message}`);
+"━━━━━━━━━━━━━━━\n" +
+"📋 *Order Details*\n" +
+"━━━━━━━━━━━━━━━\n" +
+"🔢 Quantity: " + qty + "\n" +
+"📏 Size (Kanha ji): " + size + "\n\n" +
+
+"━━━━━━━━━━━━━━━\n" +
+"🖼 *Product Preview*\n" +
+"━━━━━━━━━━━━━━━\n" +
+img + "\n\n" +
+
+"🔗 *Product Link*\n" +
+productLink + "\n\n" +
+
+"━━━━━━━━━━━━━━━\n" +
+"⏱ *Order Time*\n" +
+"━━━━━━━━━━━━━━━\n" +
+new Date().toLocaleString() + "\n\n" +
+
+"Thank you 🙏";
+
+const encoded = encodeURIComponent(message);
+
+window.open(`https://wa.me/916353373418?text=${encoded}`, "_blank");
 
 closeModal();
 }
